@@ -1,0 +1,42 @@
+<!--
+    proprity binding 5as nzido 
+        import {FormsModule} from '@angular/forms';
+            f "app.module.ts"
+-->
+
+
+<div class="row" *ngIf="isTrue">
+    <form class="col s12">
+        <form>
+            <div class="row">
+                <br>
+                <div class="input-field col s6">
+                    <i class="fa fa-user prefix"></i>
+                    <input [(ngModel)]="contact.fullName" name="fullName" id="icon_prefix" type="text" class="validate"
+                        placeholder="Full Name">
+                </div>
+                <div class="input-field col s6">
+                    <i class="fa fa-phone prefix"></i>
+                    <input [(ngModel)]="contact.tele" minlength="10" maxlength="10" name="tele" id="icon_telephone" type="text" class="validate"
+                        placeholder="Téléphone">
+                </div>
+            </div>
+            <button class="btn-large blue" type="submit" (click)="addContact()">Submit</button>
+        </form>
+        
+
+        {{contact|json}}
+    </form>
+</div>
+
+<div class="fixed-action-btn">
+    <a (click)="changes()" class="btn-floating btn-large blue waves-effect waves-light"
+        [title]="isTxt"
+    >
+        <i class="large fa fa-plus" [ngClass]="{
+            'fa-plus':isTrue==false,
+            'fa-minus':isTrue==true
+        }"></i>
+    </a>
+
+</div>

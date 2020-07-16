@@ -1,0 +1,55 @@
+<ul class="collection with-header" *ngIf="listCntcts?.length>0;else noContact">
+    <li class="collection-header">
+        <h5>list des contacts</h5>
+    </li>
+    <li class="collection-item" *ngFor="let contact of listCntcts">
+
+      <div class="row">
+        <div class="s12 col">
+          <strong>{{contact.fullName}}</strong>-{{contact.tele}}
+        </div>
+        <div *ngIf="!forEdit">
+          <button class="waves-effect waves-light btn-small secondary-content orange" (click)="showForm(contact)">
+            <i class="fa fa-pencil"></i>
+          </button>
+        </div>
+        <div>
+          <button class="waves-effect waves-light btn-small secondary-content red" (click)="removeContact(contact)">
+            <i class="fa fa-trash"></i>
+          </button>
+        </div>
+      </div>
+      <div class="s12 col" *ngIf="con.id==contact.id && forEdit ">
+        <div class="row">
+          <div class="col s12 m6 input-field">
+            <i class="fa fa-user prefix"></i>
+            <input type="text" [(ngModel)]="contact.fullName" name="fullName" [value]="contact.fullName">
+          </div>
+          <div class="col s12 m6 input-field">
+            <i class="fa fa-phone prefix"></i>
+            <input type="text" [(ngModel)]="contact.tele" name="tele" [value]="contact.tele">
+          </div>
+        </div>
+        <button class="btn-large blue" (click)="saveEdit(contact)">Save</button>
+      </div>
+      
+        
+    </li>
+</ul>
+
+
+<ng-template #noContact>
+    <h5>il n'y a pas de contanct </h5>
+    <div class="preloader-wrapper big active">
+        <div class="spinner-layer spinner-blue-only">
+          <div class="circle-clipper left">
+            <div class="circle"></div>
+          </div><div class="gap-patch">
+            <div class="circle"></div>
+          </div><div class="circle-clipper right">
+            <div class="circle"></div>
+          </div>
+        </div>
+      </div>
+</ng-template>
+        
